@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Users</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      color: #334155;
+      background: #f1f5f9;
+    }
+    h1 {
+      color: #1e293b;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #334155;
+      padding-bottom: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgb(0 0 0 / 0.1);
+      margin-bottom: 20px;
+    }
+    th, td {
+      padding: 12px 16px;
+      border: 1px solid #e2e8f0;
+      color: #334155;
+    }
+    th {
+      background: #e2e8f0;
+      color: #1e293b;
+      font-weight: bold;
+    }
+    a {
+      color: #3b82f6;
+      text-decoration: none;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+    a:hover {
+      color: #2563eb;
+      text-decoration: underline;
+    }
+    form {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgb(0 0 0 / 0.1);
+      max-width: 400px;
+    }
+    form input {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      background: #f8fafc;
+      color: #334155;
+    }
+    form input[type='submit'] {
+      background: #3b82f6;
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease-in-out;
+    }
+    form input[type='submit']:hover {
+      background: #2563eb;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users %}
+    <tr>
+      <td>{{ user.id }}</td>
+      <td>{{ user.username }}</td>
+      <td>{{ user.email }}</td>
+      <td>
+        <a href="/edit-user/{{ user.id }}">Edit</a> |
+        <a href="/delete-user/{{ user.id }}">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h2>Add User</h2>
+<form action="/add-user" method="POST">
+  <input name="username" placeholder="Username"><br>
+  <input name="email" placeholder="Email"><br>
+  <input name="password_hash" placeholder="Password"><br>
+  <input type="submit" value="Add User">
+</form>
+
+</body>
+</html>
